@@ -1,0 +1,693 @@
+{
+  "companyId": "3a8c51eb-59c4-4f38-a557-9d7a2bb1d9d1",
+  "authTokenExpireIds": [],
+  "connectorIds": [
+    "screenConnector",
+    "pingOneSSOConnector",
+    "pingOneAuthorizeConnector",
+    "httpConnector",
+    "functionsConnector"
+  ],
+  "createdDate": 1673141923782,
+  "currentVersion": 21,
+  "customerId": "35f33bbaf301dfa496ccb7eee32d9c0e",
+  "deployedDate": 1673141926485,
+  "description": "Flow to demonstrate P1AZ controlling payment amounts",
+  "flowStatus": "enabled",
+  "name": "SKO2023 - P1AZ Payment Authorization",
+  "orx": "{\"companyId\":\"3a8c51eb-59c4-4f38-a557-9d7a2bb1d9d1\",\"flowId\":\"d6b62e3abe56f1411715607939cb2217\",\"flowVersionId\":21,\"version\":\"4.0.0\",\"states\":[\"initialize\",\"start_0\",\"inside_0\",\"inside_1\",\"inside_2\",\"inside_3_1_allTriggersTrue\",\"end_0_2_allTriggersFalse\",\"end_1_1_allTriggersFalse\",\"end_2_2_allTriggersTrue\"],\"currentState\":[\"initialize\"],\"transitions\":[{\"from\":[\"initialize\"],\"to\":\"start_0\",\"conditions\":{\"$and\":[{\"initializeFlow\":true}]},\"signals\":[{\"name\":\"Screen\",\"companyId\":\"3a8c51eb-59c4-4f38-a557-9d7a2bb1d9d1\",\"flowId\":\"d6b62e3abe56f1411715607939cb2217\",\"flowVersionId\":21,\"id\":\"xky7k3r7dj\",\"connectionId\":\"62ea9cddd855205de29501e46fffb5a9\",\"connectorId\":\"screenConnector\",\"capabilityName\":\"createView\",\"properties\":{\"screen0Config\":{\"properties\":{\"screenComponentList\":{\"value\":[{\"propertyName\":\"userName\",\"preferredControlType\":\"textField\",\"preferredDataType\":\"string\",\"value\":\"\",\"attributes\":{\"displayName\":\"Username\",\"keyboardType\":\"default\"}},{\"propertyName\":\"amount\",\"preferredControlType\":\"textField\",\"preferredDataType\":\"string\",\"value\":\"\",\"attributes\":{\"displayName\":\"Payment amount\",\"keyboardType\":\"default\"}}]}}}},\"debugMode\":false,\"logLevel\":null,\"isDisabled\":false,\"inputs\":[],\"respondToUser\":true,\"transitionId\":0,\"signalId\":0}],\"transitionId\":0},{\"from\":[\"start_0\"],\"to\":\"inside_0\",\"conditions\":{\"$and\":[{\"id\":\"xky7k3r7dj\",\"connectionId\":\"62ea9cddd855205de29501e46fffb5a9\",\"connectorId\":\"screenConnector\",\"capabilityName\":\"createView\",\"success\":true}]},\"signals\":[{\"name\":\"PingOne\",\"companyId\":\"3a8c51eb-59c4-4f38-a557-9d7a2bb1d9d1\",\"flowId\":\"d6b62e3abe56f1411715607939cb2217\",\"flowVersionId\":21,\"id\":\"7fxyigqeil\",\"connectionId\":\"94141bf2f1b9b59a5f5365ff135e02bb\",\"connectorId\":\"pingOneSSOConnector\",\"capabilityName\":\"userLookup\",\"properties\":{\"matchAttributes\":{\"value\":[\"username\"]},\"userIdentifierForFindUser\":{\"value\":\"{{local.xky7k3r7dj.payload.output.userName}}\"}},\"debugMode\":false,\"logLevel\":null,\"isDisabled\":false,\"inputs\":[],\"transitionId\":1,\"signalId\":0}],\"evalNodeId\":\"df47duakh3\",\"transitionId\":1},{\"from\":[\"inside_0\"],\"to\":\"inside_1\",\"conditions\":{\"$and\":[{\"id\":\"7fxyigqeil\",\"connectionId\":\"94141bf2f1b9b59a5f5365ff135e02bb\",\"connectorId\":\"pingOneSSOConnector\",\"capabilityName\":\"userLookup\",\"success\":true}]},\"signals\":[{\"name\":\"PingOne Authorize\",\"companyId\":\"3a8c51eb-59c4-4f38-a557-9d7a2bb1d9d1\",\"flowId\":\"d6b62e3abe56f1411715607939cb2217\",\"flowVersionId\":21,\"id\":\"q48o75usnx\",\"connectionId\":\"7b2e39fb332e26e8a9035dc92e733ae3\",\"connectorId\":\"pingOneAuthorizeConnector\",\"capabilityName\":\"makeDecisionRequest\",\"properties\":{\"userId\":{\"value\":\"{{local.7fxyigqeil.payload.output.matchedUser.id}}\"},\"parameters\":{\"value\":[{\"key\":\"Payment.Amount\",\"value\":\"{{local.xky7k3r7dj.payload.output.amount}}\"},{\"key\":\"Services.PingOne Risk.UserAgent\",\"value\":\"{{global.userAgent}}\"},{\"key\":\"Services.PingOne Risk.ipAddress\",\"value\":\"{{global.ip}}\"}]}},\"debugMode\":false,\"logLevel\":null,\"isDisabled\":false,\"inputs\":[],\"transitionId\":2,\"signalId\":0}],\"evalNodeId\":\"0o0o41a03x\",\"transitionId\":2},{\"from\":[\"inside_1\"],\"to\":\"inside_2\",\"conditions\":{\"$and\":[{\"id\":\"q48o75usnx\",\"connectionId\":\"7b2e39fb332e26e8a9035dc92e733ae3\",\"connectorId\":\"pingOneAuthorizeConnector\",\"capabilityName\":\"makeDecisionRequest\",\"success\":true}]},\"signals\":[{\"name\":\"Functions\",\"companyId\":\"3a8c51eb-59c4-4f38-a557-9d7a2bb1d9d1\",\"flowId\":\"d6b62e3abe56f1411715607939cb2217\",\"flowVersionId\":21,\"id\":\"dhp7jc1i42\",\"connectionId\":\"de650ca45593b82c49064ead10b9fe17\",\"connectorId\":\"functionsConnector\",\"capabilityName\":\"AEqualsB\",\"properties\":{\"leftValueA\":{\"value\":\"{{local.q48o75usnx.payload.output.decision}}\"},\"rightValueB\":{\"value\":\"PERMIT\"},\"nodeTitle\":{\"value\":\"PERMIT?\"}},\"debugMode\":false,\"logLevel\":null,\"isDisabled\":false,\"to\":\"oe\",\"transitionId\":3,\"signalId\":0}],\"evalNodeId\":\"8hduy9nsmi\",\"transitionId\":3},{\"from\":[\"inside_2\"],\"to\":\"inside_3_1_allTriggersTrue\",\"conditions\":{\"$and\":[{\"id\":\"dhp7jc1i42\",\"connectionId\":\"de650ca45593b82c49064ead10b9fe17\",\"connectorId\":\"functionsConnector\",\"capabilityName\":\"AEqualsB\",\"logic\":{\"type\":\"where\",\"expr\":\"'{{local.q48o75usnx.payload.output.decision}}' == 'PERMIT'\"}}]},\"signals\":[{\"name\":\"PingOne Authorize\",\"companyId\":\"3a8c51eb-59c4-4f38-a557-9d7a2bb1d9d1\",\"flowId\":\"d6b62e3abe56f1411715607939cb2217\",\"flowVersionId\":21,\"id\":\"buxtjr5jp2\",\"connectionId\":\"7b2e39fb332e26e8a9035dc92e733ae3\",\"connectorId\":\"pingOneAuthorizeConnector\",\"capabilityName\":\"findStatement\",\"properties\":{\"code\":{\"value\":\"mfa-required\"},\"statements\":{\"value\":\"{{local.q48o75usnx.payload.output.statements}}\"}},\"debugMode\":false,\"logLevel\":null,\"isDisabled\":false,\"inputs\":[],\"transitionId\":4,\"signalId\":0}],\"evalNodeId\":\"aetwq6xqbg\",\"transitionId\":4},{\"from\":[\"inside_2\"],\"to\":\"end_0_2_allTriggersFalse\",\"conditions\":{\"$and\":[{\"id\":\"dhp7jc1i42\",\"connectionId\":\"de650ca45593b82c49064ead10b9fe17\",\"connectorId\":\"functionsConnector\",\"capabilityName\":\"AEqualsB\",\"logic\":{\"type\":\"whereNot\",\"expr\":\"'{{local.q48o75usnx.payload.output.decision}}' == 'PERMIT'\"}}]},\"signals\":[{\"name\":\"Http\",\"companyId\":\"3a8c51eb-59c4-4f38-a557-9d7a2bb1d9d1\",\"flowId\":\"d6b62e3abe56f1411715607939cb2217\",\"flowVersionId\":21,\"id\":\"xbgpwsnijd\",\"connectionId\":\"867ed4363b2bc21c860085ad2baa817d\",\"connectorId\":\"httpConnector\",\"capabilityName\":\"customHtmlMessage\",\"properties\":{\"messageTitle\":{\"value\":\"DENY\"},\"message\":{\"value\":\"{{local.q48o75usnx.payload.output.rawResponse}}\"}},\"debugMode\":false,\"logLevel\":null,\"isDisabled\":false,\"inputs\":[\"global.error\"],\"respondToUser\":true,\"errorConnectionInstances\":[\"local.dhp7jc1i42.payload.error\"],\"transitionId\":5,\"signalId\":0}],\"evalNodeId\":\"aetwq6xqbg\",\"transitionId\":5},{\"from\":[\"inside_3_1_allTriggersTrue\"],\"to\":\"end_1_1_allTriggersFalse\",\"conditions\":{\"$and\":[{\"id\":\"buxtjr5jp2\",\"connectionId\":\"7b2e39fb332e26e8a9035dc92e733ae3\",\"connectorId\":\"pingOneAuthorizeConnector\",\"capabilityName\":\"findStatement\",\"success\":false}]},\"signals\":[{\"name\":\"Http\",\"companyId\":\"3a8c51eb-59c4-4f38-a557-9d7a2bb1d9d1\",\"flowId\":\"d6b62e3abe56f1411715607939cb2217\",\"flowVersionId\":21,\"id\":\"rf5efgc516\",\"connectionId\":\"867ed4363b2bc21c860085ad2baa817d\",\"connectorId\":\"httpConnector\",\"capabilityName\":\"customHtmlMessage\",\"properties\":{\"message\":{\"value\":\"{{local.q48o75usnx.payload.output.rawResponse}}\"},\"messageTitle\":{\"value\":\"PERMIT\"},\"nodeTitle\":{\"value\":\"PERMIT\"}},\"debugMode\":false,\"logLevel\":null,\"isDisabled\":false,\"inputs\":[\"global.error\"],\"respondToUser\":true,\"errorConnectionInstances\":[\"local.buxtjr5jp2.payload.error\"],\"transitionId\":6,\"signalId\":0}],\"evalNodeId\":\"uk67i7og8e\",\"transitionId\":6},{\"from\":[\"inside_3_1_allTriggersTrue\"],\"to\":\"end_2_2_allTriggersTrue\",\"conditions\":{\"$and\":[{\"id\":\"buxtjr5jp2\",\"connectionId\":\"7b2e39fb332e26e8a9035dc92e733ae3\",\"connectorId\":\"pingOneAuthorizeConnector\",\"capabilityName\":\"findStatement\",\"success\":true}]},\"signals\":[{\"name\":\"Http\",\"companyId\":\"3a8c51eb-59c4-4f38-a557-9d7a2bb1d9d1\",\"flowId\":\"d6b62e3abe56f1411715607939cb2217\",\"flowVersionId\":21,\"id\":\"vg8po5d189\",\"connectionId\":\"867ed4363b2bc21c860085ad2baa817d\",\"connectorId\":\"httpConnector\",\"capabilityName\":\"customHtmlMessage\",\"properties\":{\"message\":{\"value\":\"{{local.q48o75usnx.payload.output.rawResponse}}\"},\"messageTitle\":{\"value\":\"MFA Required\"},\"nodeTitle\":{\"value\":\"PERMIT - MFA\"},\"button\":{}},\"debugMode\":false,\"logLevel\":null,\"isDisabled\":false,\"inputs\":[\"global.error\"],\"respondToUser\":true,\"transitionId\":7,\"signalId\":0}],\"evalNodeId\":\"uk67i7og8e\",\"transitionId\":7}],\"history\":[],\"outputs\":{\"screenConnector_createView\":{\"localOutputs\":[\"output\"]},\"pingOneSSOConnector_userLookup\":{\"localOutputs\":[\"output\"]},\"pingOneAuthorizeConnector_makeDecisionRequest\":{\"localOutputs\":[\"output\"]},\"pingOneAuthorizeConnector_findStatement\":{\"localOutputs\":[\"output\"]}},\"outputParameters\":[\"local.xky7k3r7dj.payload.output.userName\",\"local.7fxyigqeil.payload.output.matchedUser.id\",\"local.xky7k3r7dj.payload.output.amount\",\"global.userAgent\",\"global.ip\",\"local.q48o75usnx.payload.output.rawResponse\",\"local.q48o75usnx.payload.output.statements\",\"local.q48o75usnx.payload.output.decision\"],\"global\":{},\"local\":{},\"idMapping\":{},\"nodeMappingForTids\":{\"xky7k3r7dj\":\"initialize\",\"xky7k3r7dj_createView\":\"initialize\",\"xbgpwsnijd\":\"xky7k3r7dj\",\"xbgpwsnijd_customHtmlMessage\":\"xky7k3r7dj_createView\",\"rf5efgc516\":\"xky7k3r7dj\",\"rf5efgc516_customHtmlMessage\":\"xky7k3r7dj_createView\",\"vg8po5d189\":\"xky7k3r7dj\",\"vg8po5d189_customHtmlMessage\":\"xky7k3r7dj_createView\"},\"tids\":{},\"delayedConditionalStateChangeMappings\":{},\"delayedConditionalStateChangeMappingsReverse\":{},\"delayedConditionalStatesList\":[],\"lbsTransitionIdsToIgnore\":[],\"lbsTransitionIdsMapping\":{},\"outputParametersDefault\":{\"local.xky7k3r7dj.payload.output.userName\":\"\",\"local.7fxyigqeil.payload.output.matchedUser.id\":\"\",\"local.xky7k3r7dj.payload.output.amount\":\"\",\"global.userAgent\":\"\",\"global.ip\":\"\",\"local.q48o75usnx.payload.output.rawResponse\":\"\",\"local.q48o75usnx.payload.output.statements\":\"\",\"local.q48o75usnx.payload.output.decision\":\"\"},\"outputParametersDefaultBlacklist\":[],\"historyThreshold\":70,\"errorRewindBlackListIds\":[],\"nodeMappingForTidsNew\":{\"xky7k3r7dj\":\"initialize\",\"xbgpwsnijd\":[\"xky7k3r7dj\"],\"rf5efgc516\":[\"xky7k3r7dj\"],\"vg8po5d189\":[\"xky7k3r7dj\"]},\"nodeStates\":{\"xky7k3r7dj\":\"start_0\",\"7fxyigqeil\":\"inside_0\",\"q48o75usnx\":\"inside_1\",\"dhp7jc1i42\":\"inside_2\",\"buxtjr5jp2\":\"inside_3_1_allTriggersTrue\",\"xbgpwsnijd\":\"end_0_2_allTriggersFalse\",\"rf5efgc516\":\"end_1_1_allTriggersFalse\",\"vg8po5d189\":\"end_2_2_allTriggersTrue\"}}",
+  "publishedVersion": 21,
+  "updatedDate": 1673141926485,
+  "flowId": "d6b62e3abe56f1411715607939cb2217",
+  "versionId": 21,
+  "graphData": {
+    "elements": {
+      "nodes": [
+        {
+          "data": {
+            "id": "xky7k3r7dj",
+            "nodeType": "CONNECTION",
+            "connectionId": "62ea9cddd855205de29501e46fffb5a9",
+            "connectorId": "screenConnector",
+            "name": "Screen",
+            "label": "Screen",
+            "status": "configured",
+            "capabilityName": "createView",
+            "type": "trigger",
+            "properties": {
+              "screen0Config": {
+                "properties": {
+                  "screenComponentList": {
+                    "value": [
+                      {
+                        "propertyName": "userName",
+                        "preferredControlType": "textField",
+                        "preferredDataType": "string",
+                        "value": "",
+                        "attributes": {
+                          "displayName": "Username",
+                          "keyboardType": "default"
+                        }
+                      },
+                      {
+                        "propertyName": "amount",
+                        "preferredControlType": "textField",
+                        "preferredDataType": "string",
+                        "value": "",
+                        "attributes": {
+                          "displayName": "Payment amount",
+                          "keyboardType": "default"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 277,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "df47duakh3",
+            "nodeType": "EVAL",
+            "label": "Evaluator"
+          },
+          "position": {
+            "x": 390,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "7fxyigqeil",
+            "nodeType": "CONNECTION",
+            "connectionId": "94141bf2f1b9b59a5f5365ff135e02bb",
+            "connectorId": "pingOneSSOConnector",
+            "name": "PingOne",
+            "label": "PingOne",
+            "status": "configured",
+            "capabilityName": "userLookup",
+            "type": "action",
+            "properties": {
+              "matchAttributes": {
+                "value": [
+                  "username"
+                ]
+              },
+              "userIdentifierForFindUser": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"screen.svg\",\n        \"url\": \"userName\",\n        \"data\": \"{{local.xky7k3r7dj.payload.output.userName}}\",\n        \"tooltip\": \"{{local.xky7k3r7dj.payload.output.userName}}\",\n        \"children\": [\n          {\n            \"text\": \"userName\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 503,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "0o0o41a03x",
+            "nodeType": "EVAL",
+            "label": "Evaluator"
+          },
+          "position": {
+            "x": 619,
+            "y": 236.5
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "q48o75usnx",
+            "nodeType": "CONNECTION",
+            "connectionId": "7b2e39fb332e26e8a9035dc92e733ae3",
+            "connectorId": "pingOneAuthorizeConnector",
+            "name": "PingOne Authorize",
+            "label": "PingOne Authorize",
+            "status": "configured",
+            "capabilityName": "makeDecisionRequest",
+            "type": "action",
+            "properties": {
+              "userId": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.7fxyigqeil.payload.output.matchedUser.id}}\",\n        \"tooltip\": \"{{local.7fxyigqeil.payload.output.matchedUser.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "parameters": {
+                "value": [
+                  {
+                    "key": "Payment.Amount",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"screen.svg\",\n        \"url\": \"amount\",\n        \"data\": \"{{local.xky7k3r7dj.payload.output.amount}}\",\n        \"tooltip\": \"{{local.xky7k3r7dj.payload.output.amount}}\",\n        \"children\": [\n          {\n            \"text\": \"amount\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "key": "Services.PingOne Risk.UserAgent",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"userAgent\",\n        \"data\": \"{{global.userAgent}}\",\n        \"tooltip\": \"{{global.userAgent}}\",\n        \"children\": [\n          {\n            \"text\": \"userAgent\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "key": "Services.PingOne Risk.ipAddress",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"ip\",\n        \"data\": \"{{global.ip}}\",\n        \"tooltip\": \"{{global.ip}}\",\n        \"children\": [\n          {\n            \"text\": \"ip\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 735,
+            "y": 237
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "8hduy9nsmi",
+            "nodeType": "EVAL",
+            "label": "Evaluator"
+          },
+          "position": {
+            "x": 844.5,
+            "y": 238.5
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "rf5efgc516",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHtmlMessage",
+            "type": "trigger",
+            "properties": {
+              "message": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"rawResponse\",\n        \"data\": \"{{local.q48o75usnx.payload.output.rawResponse}}\",\n        \"tooltip\": \"{{local.q48o75usnx.payload.output.rawResponse}}\",\n        \"children\": [\n          {\n            \"text\": \"rawResponse\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "messageTitle": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"PERMIT\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "PERMIT"
+              }
+            }
+          },
+          "position": {
+            "x": 1470,
+            "y": 330
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "buxtjr5jp2",
+            "nodeType": "CONNECTION",
+            "connectionId": "7b2e39fb332e26e8a9035dc92e733ae3",
+            "connectorId": "pingOneAuthorizeConnector",
+            "name": "PingOne Authorize",
+            "label": "PingOne Authorize",
+            "status": "configured",
+            "capabilityName": "findStatement",
+            "type": "action",
+            "properties": {
+              "code": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"mfa-required\"\n      }\n    ]\n  }\n]"
+              },
+              "statements": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"statements\",\n        \"data\": \"{{local.q48o75usnx.payload.output.statements}}\",\n        \"tooltip\": \"{{local.q48o75usnx.payload.output.statements}}\",\n        \"children\": [\n          {\n            \"text\": \"statements\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 1200,
+            "y": 240
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "vg8po5d189",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHtmlMessage",
+            "type": "trigger",
+            "properties": {
+              "message": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"rawResponse\",\n        \"data\": \"{{local.q48o75usnx.payload.output.rawResponse}}\",\n        \"tooltip\": \"{{local.q48o75usnx.payload.output.rawResponse}}\",\n        \"children\": [\n          {\n            \"text\": \"rawResponse\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "messageTitle": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"MFA Required\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "PERMIT - MFA"
+              },
+              "button": {}
+            },
+            "idUnique": "kezlrifq67"
+          },
+          "position": {
+            "x": 1470,
+            "y": 150
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "uk67i7og8e",
+            "nodeType": "EVAL",
+            "properties": {
+              "rf5efgc516": {
+                "value": "allTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 1320,
+            "y": 240
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "dhp7jc1i42",
+            "nodeType": "CONNECTION",
+            "connectionId": "de650ca45593b82c49064ead10b9fe17",
+            "connectorId": "functionsConnector",
+            "name": "Functions",
+            "label": "Functions",
+            "status": "configured",
+            "capabilityName": "AEqualsB",
+            "type": "trigger",
+            "properties": {
+              "leftValueA": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"decision\",\n        \"data\": \"{{local.q48o75usnx.payload.output.decision}}\",\n        \"tooltip\": \"{{local.q48o75usnx.payload.output.decision}}\",\n        \"children\": [\n          {\n            \"text\": \"decision\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "rightValueB": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"PERMIT\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "PERMIT?"
+              }
+            }
+          },
+          "position": {
+            "x": 971,
+            "y": 238
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "aetwq6xqbg",
+            "nodeType": "EVAL",
+            "properties": {
+              "xbgpwsnijd": {
+                "value": "allTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 1055.5,
+            "y": 239
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "xbgpwsnijd",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHtmlMessage",
+            "type": "trigger",
+            "properties": {
+              "messageTitle": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"DENY\"\n      }\n    ]\n  }\n]"
+              },
+              "message": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"rawResponse\",\n        \"data\": \"{{local.q48o75usnx.payload.output.rawResponse}}\",\n        \"tooltip\": \"{{local.q48o75usnx.payload.output.rawResponse}}\",\n        \"children\": [\n          {\n            \"text\": \"rawResponse\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 1470,
+            "y": 450
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        }
+      ],
+      "edges": [
+        {
+          "data": {
+            "id": "2x55c52rga",
+            "source": "xky7k3r7dj",
+            "target": "df47duakh3"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "0qsntn5r8a",
+            "source": "df47duakh3",
+            "target": "7fxyigqeil"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "7tehymwl7k",
+            "source": "7fxyigqeil",
+            "target": "0o0o41a03x"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "814vqkx181",
+            "source": "0o0o41a03x",
+            "target": "q48o75usnx"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "cz0tkb1eu5",
+            "source": "q48o75usnx",
+            "target": "8hduy9nsmi"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "5twyso0wfm",
+            "source": "uk67i7og8e",
+            "target": "rf5efgc516"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "b5r6uivd8p",
+            "source": "buxtjr5jp2",
+            "target": "uk67i7og8e"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "6nyluq9jlb",
+            "source": "uk67i7og8e",
+            "target": "vg8po5d189"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "5hru5y0pen",
+            "source": "8hduy9nsmi",
+            "target": "dhp7jc1i42"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "9k2xh2t943",
+            "source": "dhp7jc1i42",
+            "target": "aetwq6xqbg"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "lqo35ym53b",
+            "source": "aetwq6xqbg",
+            "target": "buxtjr5jp2"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "48nzf07wy5",
+            "source": "aetwq6xqbg",
+            "target": "xbgpwsnijd"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        }
+      ]
+    },
+    "data": {},
+    "zoomingEnabled": true,
+    "userZoomingEnabled": true,
+    "zoom": 1,
+    "minZoom": 1e-50,
+    "maxZoom": 1e+50,
+    "panningEnabled": true,
+    "userPanningEnabled": true,
+    "pan": {
+      "x": 0,
+      "y": 0
+    },
+    "boxSelectionEnabled": true,
+    "renderer": {
+      "name": "null"
+    }
+  },
+  "flowColor": "#58DFFF",
+  "savedDate": 1673141923743,
+  "variables": []
+}

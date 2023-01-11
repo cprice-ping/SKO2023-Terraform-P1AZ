@@ -1,0 +1,60 @@
+# SKO 2023 - PingOne Authorize
+
+This repo contains the configuration that will be discussed in the P1AZ session.
+
+## Folders
+
+`terraform` - Contains the HCL to create as much as possible of the PingOne Environment
+`davinci` - Contains a DaVinci flow used in the Labs
+`policies` - Contains the Policy sets for the Labs
+
+## Terraform
+
+Terraform HCL is provided to create the PingOne Environment that is needed for the P1AZ Trust Framework and Policies.
+
+To execute, clone this repo and do the following:
+
+Add a `terraform.tfvars` file
+
+```hcl
+region = "{{ NorthAmerica | Canada | Asia | Europe }}"
+organization_id = “{{orgId}}”
+env_id = “{{adminEnvId}}“
+worker_id = “{{workerId}}“
+worker_secret = “{{workerSecret}}“
+deploy_name = "SKO2023 - PingOne Authorize"
+```
+
+At a command line:
+
+```zsh
+terraform init
+terraform plan
+terraform apply —auto-approve
+```
+
+Terraform should execute and display a set of values that need to be manually entered into the created PingOne users
+
+## Manual PingOne Config
+
+### PingOne Users
+
+Data for the Policies need to be manually added to the following Users:
+
+| P1 User | Attribute | Value |
+| --- | --- | --- |
+| child1 | "Parent ID" | parentId (Terraform ouput) |
+| child2 | "Parent ID" | parentId (Terraform ouput) |
+| parent | "Children" | `[{"id":"{{child1.id}}","limit":100},{"id":"{{child2.id}}","limit":200}]`
+
+### PingOne Authorize
+
+Decision Endpoints -- Test
+
+* Enable "Record recent decisions"
+
+## Labs
+
+* [Lab 1](./P1AZ%20Labs/Lab1.md)
+* [Lab 2](./P1AZ%20Labs/Lab2.md)
+* [Lab 3](./P1AZ%20Labs/Lab3.md)

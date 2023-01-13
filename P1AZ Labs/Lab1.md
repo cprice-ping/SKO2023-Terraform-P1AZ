@@ -71,7 +71,7 @@ Click Execute
 6. Add Condition to state if the Request is from a Parent  
 Click on Conditions  
 Add "Is a child?"  
-`Request.User.Parent ID` *contains* `-` (part of the UUID)  
+`Request User.Parent ID` *contains* `-` (part of the UUID)  
 Test with Child ID  
 (Should return parentID)  
 Test with Parent ID  

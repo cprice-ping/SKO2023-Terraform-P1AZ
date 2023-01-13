@@ -1,6 +1,6 @@
 # Policy Requirements
 
-A Bank wants to deliver a feature that allows a Parent to share access to their account with their chid(ren) with resrictions on how large a transaction can be for the child.
+A Bank wants to deliver a feature that allows a Parent to share access to their account with their chid(ren) with restrictions on how large a transaction can be for the child.
 
 ## Questions for the Policy design
 

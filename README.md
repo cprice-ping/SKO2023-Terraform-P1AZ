@@ -45,15 +45,35 @@ terraform apply —auto-approve
 
 Terraform should execute and display a set of values that need to be manually entered into the created PingOne users
 
-## Manual PingOne Config
+## Clicky Clicky (for the non Terraform folks)
 
 ### PingOne Environment
 
-Create a PingOne Environment and add PingOne Authorize to it.
+Create a PingOne Environment.
 
-Make sure you can **Import** -- check the Version History tab.
+#### PingOne Directory
 
-If you can't - ask for the Feature Flag to be added to this Env
+Add 2 Custom Attributes
+
+| Name | Settings |
+| --- | --- |
+| `parent` |  STRING |
+| `children` | JSON multi-valued |
+
+Add 3 Users
+
+* Parent
+* Child1
+* Child2
+
+#### PingOne Authorize
+
+Add PingOne Authorize to your Environment
+
+>Make sure you can **Import** -- check the Version History tab.
+>If you can't - ask for the Feature Flag to be added to this Env
+
+## Additional PingOne Configuration
 
 ### PingOne Users
 

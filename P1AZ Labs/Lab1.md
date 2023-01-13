@@ -41,7 +41,7 @@ This the the beginning of building a Policy. You start by defining the attribute
 
 >**Note**: You can use Attributes like Folder names, and organize the list in ways that make more sense.
 
-### Lab Exercise
+## Lab Exercise
 
 1. Import Policy - Lab 1
 2. Look at the **Trust Framework** - you can see Attributes and Services:

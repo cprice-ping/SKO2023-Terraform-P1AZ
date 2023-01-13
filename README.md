@@ -14,7 +14,7 @@ Terraform HCL is provided to create the PingOne Environment that is needed for t
 
 To execute, clone this repo and do the following:
 
-Add a `terraform.tfvars` file
+Add a `terraform.tfvars` file to the cloned `terraform` folder.
 
 ```hcl
 region = "{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -26,17 +26,34 @@ worker_secret = "{{workerSecret}}"
 deploy_name = "SKO2023 - PingOne Authorize"
 ```
 
+Replace `{{ ... }}` with your PingOne details
+
 At a command line:
 
 ```zsh
 terraform init
 terraform plan
-terraform apply —auto-approve
 ```
+
+If the plan fails - check your `terraform.tfvars` values. 
+
+If the plan succeeds:
+
+```hcl
+terraform apply —auto-approve
+````
 
 Terraform should execute and display a set of values that need to be manually entered into the created PingOne users
 
 ## Manual PingOne Config
+
+### PingOne Environment
+
+Create a PingOne Environment and add PingOne Authorize to it.
+
+Make sure you can **Import** -- check the Version History tab.
+
+If you can't - ask for the Feature Flag to be added to this Env
 
 ### PingOne Users
 

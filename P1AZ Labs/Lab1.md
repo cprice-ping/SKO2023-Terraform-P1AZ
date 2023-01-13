@@ -77,7 +77,7 @@ Test with Child ID
 Test with Parent ID  
 (Should fail -- why?)
 7. Fix the ParentID attribute  
-Open `Request.User.Parent ID`  
+Open `Request User.Parent ID`  
 Set Default value to `parent`  
 Switch Condition to *does not equal* "parent" (no quotes)  
 Test the condition with Child and Parent IDs

@@ -50,7 +50,7 @@ This the the beginning of building a Policy. You start by defining the attribute
 | --- | --- |
 | `Request User` | Resolved UserID - extract `parent` value |
 | `Payment.Amount` | Payment is a "folder", Amount is in the Request |
-| `Parent.Child.Limit` | Extract the `children` object |
+| `Parent Account.Child.Limit` | Extract the `children` object |
 | | Filter to the specific child |
 | | Extract the `limit` |
 | `Services.PingOne.Environment` | Contains things needed for the P1 User API call |

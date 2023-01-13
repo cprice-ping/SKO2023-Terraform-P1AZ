@@ -30,7 +30,7 @@ Replace `{{ ... }}` with your PingOne details
 
 At a command line:
 
-```zsh
+```hcl
 terraform init
 terraform plan
 ```
@@ -70,7 +70,7 @@ Add 3 Users
 
 Add PingOne Authorize to your Environment
 
->Make sure you can **Import** -- check the Version History tab.
+>**Note** Make sure you can **Import** -- check the Version History tab.
 >If you can't - ask for the Feature Flag to be added to this Env
 
 ## Additional PingOne Configuration

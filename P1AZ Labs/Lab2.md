@@ -1,8 +1,8 @@
-# Policy Writing
+# Lab 2 - Policy Writing
 
 Now that we've done the hard part, we can write some policies and rules.
 
-There are 2 Policies we need - the rules are different and they apply in different contexts. 
+There are 2 Policies we need - the rules are different and they apply in different contexts.
 
 * Parent
 * Child
@@ -11,7 +11,7 @@ Each of these will have different rules that are used to make the Policy decisio
 
 ### Lab Exercise
 
-1. Import Policy - Lab 2
+1. Import Policy - [Lab 2](./SKO2023%20-%20P1AZ%20-%20Lab2.snapshot)
 
 2. Examine the `Parent Rules` policy and it's rules
 
@@ -36,8 +36,8 @@ Set the `Payment Amount` attribute to a number
 6. Write the `Child Rules` policy  
 Don't forget the **Applies When**  
 Use the Effect option - Permit if condition holds, else deny  
->This will force a PERMIT or DENY on the Rule decision  
- 
+    >This will force a PERMIT or DENY on the Rule decision  
+
  7. Use the Attribues we created to add a Rule  
  Check the Payment Amount is less than the `Parent Account.Child.Limit`
 8. Test Policy

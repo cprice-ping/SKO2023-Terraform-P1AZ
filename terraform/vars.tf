@@ -6,6 +6,7 @@ variable "region" {
 variable "organization_id" {
   type        = string
   description = "Your Organization ID"
+  sensitive = true
 }
 
 variable "admin_env_id" {
@@ -18,14 +19,27 @@ variable "admin_user_id" {
   description = "Admin User ID for Role Assignment"
 }
 
+variable "admin_user_name" {
+  type        = string
+  description = "Admin Username for the DV provider"
+}
+
+variable "admin_user_password" {
+  type        = string
+  description = "Admin User password for the DV provider"
+  sensitive = true
+}
+
 variable "worker_id" {
   type        = string
   description = "Worker App ID App - App must have sufficient Roles"
+  sensitive = true
 }
 
 variable "worker_secret" {
   type        = string
   description = "Worker App Secret - App must have sufficient Roles"
+  sensitive = true
 }
 
 variable "deploy_name" {

@@ -3,5 +3,8 @@ terraform {
     pingone = {
       source = "pingidentity/pingone"
     }
+    davinci = {
+      source = "pingidentity/davinci"
+    }
   }
 }

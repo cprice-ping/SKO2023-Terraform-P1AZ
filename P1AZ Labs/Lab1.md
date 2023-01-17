@@ -43,7 +43,7 @@ This the the beginning of building a Policy. You start by defining the attribute
 
 ## Lab Exercise
 
-1. Import Policy - Lab 1
+1. Import Policy - [Lab 1](./SKO2023%20-%20P1AZ%20-%20Lab1.snapshot)
 2. Look at the **Trust Framework** - you can see Attributes and Services:
 
 | Attribute | Comments |

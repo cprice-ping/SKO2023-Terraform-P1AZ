@@ -27,17 +27,17 @@ Rules used if this is a Parent:
 | Step-Up if > 500 | If the Amount is > 500, request a step-up |
 
 3. Look at the Rules  
-PERMIT Always contains only the Effect
-STEP-UP shows a comparison
-STEP-UP also has an Advice statement - this is returned with the PERMIT decision
+    * PERMIT Always contains only the Effect
+    * STEP-UP shows a comparison
+    * STEP-UP also has an Advice statement - this is returned with the PERMIT decision
 4. Test the policy with a ParentID  
-Set the `Payment Amount` attribute to a number
+    * Set the `Payment Amount` attribute to a number
 5. Switch the order of the Rules and Test
 6. Write the `Child Rules` policy  
-Don't forget the **Applies When**  
-Use the Effect option - Permit if condition holds, else deny  
+    * Don't forget the **Applies When**  
+    * Use the Effect option - Permit if condition holds, else deny  
     >This will force a PERMIT or DENY on the Rule decision  
 
  7. Use the Attribues we created to add a Rule  
- Check the Payment Amount is less than the `Parent Account.Child.Limit`
+    * Check the Payment Amount is less than the `Parent Account.Child.Limit`
 8. Test Policy

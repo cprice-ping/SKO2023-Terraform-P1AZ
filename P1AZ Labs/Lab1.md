@@ -60,34 +60,34 @@ This the the beginning of building a Policy. You start by defining the attribute
 | `Services.PingOne.User Object` | The results of the P1 User API Service call |
 
 3. Add your Worker Details to the Attributes (`Services.PingOne.Token`) used to get a token  
-Use the Resolver -> Constant
+    * Use the Resolver -> Constant
 4. Test that you can get a token  
-On the `accessToken` attribute - click Test and then Execute  
-(You should see a JWT returned)
+    * On the `accessToken` attribute - click Test and then Execute  
+        * You should see a JWT returned
 5. Test the parent attribute resolves  
-On the User Account -> Parent  
-Click Test  
-Enter a `childId` for the PingOne UserID  
-Click Execute  
-(You should see a value returned)
+    * On the User Account -> Parent  
+    * Click Test  
+    * Enter a `childId` for the PingOne UserID  
+    * Click Execute  
+        * You should see a value returned
 6. Add Condition to state if the Request is from a Parent  
-Click on Conditions  
-Add "Is a child?"  
-`Request User.Parent ID` *contains* `-` (part of the UUID)  
-Test with Child ID  
-(Should return parentID)  
-Test with Parent ID  
-(Should fail -- why?)
+    * Click on Conditions  
+    * Add "Is a child?"  
+    * `Request User.Parent ID` *contains* `-` (part of the UUID)  
+    * Test with Child ID  
+        * Should return parentID
+    * Test with Parent ID  
+        * Should fail -- why?
 7. Fix the ParentID attribute  
-Open `Request User.Parent ID`  
-Set Default value to `parent`  
-Switch Condition to *does not equal* "parent" (no quotes)  
-Test the condition with Child and Parent IDs
+    * Open `Request User.Parent ID`  
+    * Set Default value to `parent`  
+    * Switch Condition to *does not equal* "parent" (no quotes)  
+    * Test the condition with Child and Parent IDs
 8. Examine the Parent Account attribute  
-This is the results of the P1 User API lookup  
-Test  
+    * This is the results of the P1 User API lookup  
+    * Test  
 9. Examine `Parent Account.Child`  
-Look at the sequence of Value processors  
-"Filter children to current requestor" shows how to do deep filters using JSONPath
+    * Look at the sequence of Value processors  
+    * "Filter children to current requestor" shows how to do deep filters using JSONPath
 10. `Parent Account.Child.Limit` should resolve to a number  
-Test using a ChildID as the PingOne UserID
+    * Test using a ChildID as the PingOne UserID

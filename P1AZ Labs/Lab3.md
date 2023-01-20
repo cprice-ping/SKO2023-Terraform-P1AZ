@@ -31,7 +31,7 @@ Currently, the Connector doesn't use the Signals SDK - so it can't leverage the 
     * `Services.PingOne Risk.ipAddress`
     * `Services.PingOne Risk.UserAgent`
 4. Look at the `Services.PingOne Risk` attribute -- look at the JSON Schema
->This exposes the schema to the Policy Editor - you can select any attribute returned in the Schema and P1AZ will create the proper Resolver
+    >This exposes the schema to the Policy Editor - you can select any attribute returned in the Schema and P1AZ will create the proper Resolver
 
 #### DaVinci
 

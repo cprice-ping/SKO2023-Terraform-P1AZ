@@ -35,7 +35,7 @@ terraform init
 terraform plan
 ```
 
-If the plan fails - check your `terraform.tfvars` values. 
+If the plan fails - check your `terraform.tfvars` values.
 
 If the plan succeeds:
 

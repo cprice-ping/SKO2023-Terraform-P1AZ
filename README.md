@@ -77,7 +77,7 @@ Add PingOne Authorize to your Environment
 
 ### PingOne Users
 
-Data for the Policies need to be manually added to the following Users:
+Data for the Labs need to be manually added to the following Users:
 
 | P1 User | Attribute | Value |
 | --- | --- | --- |

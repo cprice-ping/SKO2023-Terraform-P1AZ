@@ -45,6 +45,12 @@ terraform apply —auto-approve
 
 Terraform should execute and display a set of values that need to be manually entered into the created PingOne users
 
+To get the proper JSON object for `children`,
+
+```hcl
+terraform output -raw children
+```
+
 ## Clicky Clicky (for the non Terraform folks)
 
 ### PingOne Environment

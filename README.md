@@ -51,6 +51,8 @@ To get the proper JSON object for `children`,
 terraform output -raw children
 ```
 
+>**Note** The output has an extra `%` character - don't copy it.
+
 ## Clicky Clicky (for the non Terraform folks)
 
 ### PingOne Environment

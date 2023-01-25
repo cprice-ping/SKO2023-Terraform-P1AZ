@@ -11,7 +11,7 @@ Each of these will have different rules that are used to make the Policy decisio
 
 ### Lab Exercise
 
-1. Import Policy (Overwrite) - [Lab 2 - Snapshot](./SKO2023%20-%20P1AZ%20-%20Lab2.snapshot)
+1. Import Policy (Overwrite) - [Lab 2 - Snapshot](./SKO2023-Lab2.snapshot)
     * Reset your Env-specific attributes
         * `Services.PingOne.Environment`
             * Auth & API Paths (Lab defaults to `.com`)

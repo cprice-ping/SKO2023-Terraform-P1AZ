@@ -21,11 +21,7 @@ Currently, the Connector doesn't use the Signals SDK - so it can't leverage the 
 #### P1AZ
 
 1. Import Policy - [Lab 3 - Snapshot](./SKO2023-Lab3.snapshot)
-2. Reset your Env-specific attributes
-    * `Services.PingOne.Environment`
-        * Auth & API Paths (Lab defaults to `.com`)
-    * `Services.PingOne.Token`
-        * Worker ID & Secret
+2. Set `Parent Account` to use a `PingOne User` Resolver - and use the `Request.ParentID` attribute
 3. Set the incoming Attributes to resolve from the Request
     * `Payment.Amount`
     * `Services.PingOne Risk.ipAddress`

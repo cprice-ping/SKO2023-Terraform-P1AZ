@@ -96,6 +96,3 @@ This the the beginning of building a Policy. You start by defining the attribute
     * "Filter children to current requestor" shows how to do deep filters using JSONPath
 10. `Parent Account.Child.Limit` should resolve to a number  
     * Test using a ChildID as the PingOne UserID
-
->**Note** The P1 User Service call that is made to get the Child's Limits doesn't need to be a Service.
-You can use the PingOne UserID resolver mapped to the `Parent ID` value on the incoming Request User

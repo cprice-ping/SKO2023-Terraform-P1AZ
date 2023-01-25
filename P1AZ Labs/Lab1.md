@@ -61,6 +61,7 @@ This the the beginning of building a Policy. You start by defining the attribute
 
 3. Add your Worker Details to the Attributes (`Services.PingOne.Token`) used to get a token  
     * Use the Resolver -> Constant
+    >**Note** If your P1 Env is **not** in NA - modify the domain on `Services.PingOne.Environment.Auth Path` and `Services.PingOne.Environment.API Path`
 4. Test that you can get a token  
     * On the `accessToken` attribute - click Test and then Execute  
         * You should see a JWT returned

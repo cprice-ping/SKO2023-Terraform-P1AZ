@@ -36,7 +36,7 @@ Rules used if this is a Parent:
     * STEP-UP shows a comparison
     * STEP-UP also has an Advice statement - this is returned with the PERMIT decision
 4. Test the policy with a ParentID  
-    * Set the `Payment Amount` attribute to a number
+    * Set the `Override.Payment Amount` attribute to a number
 5. Switch the order of the Rules and Test
 6. Write the `Child Rules` policy  
     * Don't forget the **Applies When**  

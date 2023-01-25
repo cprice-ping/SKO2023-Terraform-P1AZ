@@ -19,17 +19,6 @@ variable "admin_user_id" {
   description = "Admin User ID for Role Assignment"
 }
 
-variable "admin_user_name" {
-  type        = string
-  description = "Admin Username for the DV provider"
-}
-
-variable "admin_user_password" {
-  type        = string
-  description = "Admin User password for the DV provider"
-  sensitive = true
-}
-
 variable "worker_id" {
   type        = string
   description = "Worker App ID App - App must have sufficient Roles"

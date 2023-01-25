@@ -71,7 +71,7 @@ This the the beginning of building a Policy. You start by defining the attribute
     * Enter a `childId` for the PingOne UserID  
     * Click Execute  
         * You should see a value returned
-6. Add Condition to state if the Request is from a Parent  
+6. Add Condition to determine if the Request is from a Parent  
     * Click on Conditions  
     * Add "Is a child?"  
     * `Request User.Parent ID` *contains* `-` (part of the UUID)  

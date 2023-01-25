@@ -68,7 +68,7 @@ This the the beginning of building a Policy. You start by defining the attribute
     * On the `accessToken` attribute - click Test and then Execute  
         * You should see a JWT returned
 5. Test the parent attribute resolves  
-    * On the User Account -> Parent  
+    * On the `Request User.Parent ID`  
     * Click Test  
     * Enter a `childId` for the PingOne UserID  
     * Click Execute  

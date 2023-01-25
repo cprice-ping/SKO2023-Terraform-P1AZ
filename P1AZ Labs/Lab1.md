@@ -87,7 +87,7 @@ This the the beginning of building a Policy. You start by defining the attribute
     * Set Default value to `parent`  
     * Switch Condition to *does not equal* "parent" (no quotes)  
     * Test the condition with Child and Parent IDs
-8. Examine the Parent Account attribute  
+8. Examine the `Parent Account` attribute  
     * This is the results of the P1 User API lookup  
     * Test  
 9. Examine `Parent Account.Child`  

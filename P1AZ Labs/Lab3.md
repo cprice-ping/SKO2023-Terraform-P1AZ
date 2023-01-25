@@ -20,7 +20,7 @@ Currently, the Connector doesn't use the Signals SDK - so it can't leverage the 
 
 #### P1AZ
 
-1. Import Policy - [Lab 3](./SKO2023%20-%20P1AZ%20-%20Lab3.snapshot)
+1. Import Policy - [Lab 3 - Snapshot](./SKO2023%20-%20P1AZ%20-%20Lab3.snapshot)
 2. Reset your Env-specific attributes
     * `Services.PingOne.Environment`
         * Auth & API Paths (Lab defaults to `.com`)

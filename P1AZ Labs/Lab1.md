@@ -45,7 +45,8 @@ This the the beginning of building a Policy. You start by defining the attribute
 
 >Lab Policy starters can be found in the `/P1AZ Labs` folder in this repo
 
-1. Import Policy - [Lab 1](./SKO2023%20-%20P1AZ%20-%20Lab1.snapshot)
+1. Import Policy - [Lab 1 - Snapshot](./SKO2023%20-%20P1AZ%20-%20Lab1.snapshot)
+    >**Note:** Use the Dropdown to select **Overwrite**
 2. Look at the **Trust Framework** - you can see Attributes and Services:
 
 | Attribute | Comments |
@@ -61,6 +62,7 @@ This the the beginning of building a Policy. You start by defining the attribute
 
 3. Add your Worker Details to the Attributes (`Services.PingOne.Token`) used to get a token  
     * Use the Resolver -> Constant
+    * Set your P1AZ EnvID in `Services.PingOne.Environment.EnvID`
     >**Note** If your P1 Env is **not** in NA - modify the domain on `Services.PingOne.Environment.Auth Path` and `Services.PingOne.Environment.API Path`
 4. Test that you can get a token  
     * On the `accessToken` attribute - click Test and then Execute  

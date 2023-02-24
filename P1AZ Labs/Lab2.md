@@ -40,3 +40,5 @@ Rules used if this is a Parent:
 8. Use the Attribues we created to add a Rule  
     * Check the Payment Amount is less than the `Parent Account.Child.Limit`
 9. Test Policy
+
+[Lab 3](./Lab3.md)
